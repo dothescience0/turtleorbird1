@@ -1,0 +1,70 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head>
+<body>
+  <title>Turtle or Bird</title>
+  <div id='image_holder' class='container'>
+    <h1>Turtle or Bird?</h1>
+    <h2 id="answer_result"></h2>
+    <img id="shown_image" src="images/turtle2.jpg" height=500>
+  </div>
+  <div id='button_holder' class='container'>
+    <button id="turtle_button" type="button" class="btn btn-primary">Turtle</button>
+    <button id="bird_button" type="button" class="btn btn-primary">Bird</button>
+  </div>
+</body>
+<script>
+  var num_pics = 6;
+  var b_or_t = 0;
+  var pic_num = 0;
+  var image_name = '';
+  changeImage();
+  //console.log('b_or_t: ',b_or_t);
+
+  $( "#turtle_button" ).click(function() {
+     //console.log('b_or_t: ',b_or_t);
+     if (b_or_t == 2) {
+       $( "#answer_result" ).html( "Correct!" );
+       //console.log('turtle_button - correct')
+     } else {
+       $( "#answer_result" ).html( "Wrong!" );
+       //console.log('turtle_button - wrong')
+     }
+     changeImage();
+  });
+
+  $( "#bird_button" ).click(function() {
+     if (b_or_t == 1) {
+       $( "#answer_result" ).html( "Correct!" );
+     } else {
+       $( "#answer_result" ).html( "Wrong!" );
+     }
+     changeImage();
+  });
+
+  function changeImage() {
+    var last_pic_num = pic_num;
+    var last_b_or_t = b_or_t;
+
+    while (pic_num == last_pic_num && last_b_or_t == b_or_t) {
+      pic_num = Math.floor(Math.random() * num_pics) + 1;
+      b_or_t = Math.floor(Math.random() * 2) + 1;
+    }
+
+    if (b_or_t == 1) {
+      image_name = 'images/bird' + pic_num + '.jpg';
+    } else {
+      image_name = 'images/turtle' + pic_num + '.jpg';
+    }
+
+    $("#shown_image").attr("src", image_name);
+    //console.log('pic_num: ',pic_num);
+    //console.log('b_or_t: ',b_or_t);
+  }
+
+</script>
+</html>
